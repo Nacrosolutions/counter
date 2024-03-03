@@ -1,7 +1,6 @@
 
 import {styled} from 'styled-components'
 import Button from './Button';
-import { useDispatch, useSelector } from 'react-redux';
 
 
 const StyledDiv=styled.div`
@@ -24,36 +23,13 @@ const StyledBlock=styled.div`
 
 
 export default function Counter () {
-
-  const counter=useSelector(state=>state.counter);
-
- const dispatch=useDispatch();
-
-
-const incrementHandler=()=>{
-  dispatch({type:"increment"})
-}
-
-const increaseBy5 =()=>{
-  dispatch({type:"increase",amount:5})
-}
-
- 
-const decrementHandler=()=>{
-  dispatch({type:"decrement"})
-}
- 
-
-
-
 return (
     <StyledDiv>
   <StyledBlock>
-     <p style={{fontSize:"32px",marginTop:"20px"}}>Counter {counter}  </p> 
-    <Button onClick={incrementHandler}>+</Button>
-    <Button onClick={increaseBy5}>+5</Button>
-    <Button onClick={decrementHandler}>-</Button>
-    <Button >Toggle</Button>
+    <p style={{fontSize:"32px",marginTop:"20px"}}>Counter  </p>
+    <Button>+</Button>
+    <Button>-</Button>
+    <Button>Toggle</Button>
   </StyledBlock>
 
     </StyledDiv>
