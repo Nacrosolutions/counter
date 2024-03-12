@@ -26,6 +26,7 @@ const StyledBlock=styled.div`
 export default function Counter () {
 
   const counter=useSelector(state=>state.counter);
+  const counterToggle=useSelector(state=>state.showCounter)
 
  const dispatch=useDispatch();
 
@@ -44,16 +45,18 @@ const decrementHandler=()=>{
 }
  
 
-
+const toggleHandler=()=>{
+  dispatch({type:"toggle"})
+}
 
 return (
     <StyledDiv>
   <StyledBlock>
-     <p style={{fontSize:"32px",marginTop:"20px"}}>Counter {counter}  </p> 
+    {counterToggle && <p style={{fontSize:"32px",marginTop:"20px"}}>Counter {counter}  </p> }
     <Button onClick={incrementHandler}>+</Button>
     <Button onClick={increaseBy5}>+5</Button>
     <Button onClick={decrementHandler}>-</Button>
-    <Button >Toggle</Button>
+    <Button  onClick={toggleHandler}>Toggle</Button>
   </StyledBlock>
 
     </StyledDiv>
