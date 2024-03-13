@@ -2,6 +2,7 @@
 import {styled} from 'styled-components'
 import Button from './Button';
 import { useDispatch, useSelector } from 'react-redux';
+import { counterAction } from '../../store/store';
 
 
 const StyledDiv=styled.div`
@@ -25,34 +26,39 @@ const StyledBlock=styled.div`
 
 export default function Counter () {
 
-  const counter=useSelector(state=>state.counter);
-  const counterToggle=useSelector(state=>state.showCounter)
+  // const counter=useSelector(state=>state.counter);
+  const counter=useSelector(state=>state.counter.counter);
+  const counterToggle=useSelector(state=>state.counter.showCounter)
 
  const dispatch=useDispatch();
 
 
 const incrementHandler=()=>{
-  dispatch({type:"increment"})
+  console.log("HEREEE",counterToggle)
+  dispatch(counterAction.increment())
 }
 
 const increaseBy5 =()=>{
-  dispatch({type:"increase",amount:5})
+  dispatch(counterAction.increase(5))
 }
 
  
 const decrementHandler=()=>{
-  dispatch({type:"decrement"})
+  dispatch(counterAction.decrement())
 }
  
 
 const toggleHandler=()=>{
-  dispatch({type:"toggle"})
+  dispatch(counterAction.toggle())
 }
 
 return (
+  <>
+  
     <StyledDiv>
+      
   <StyledBlock>
-    {counterToggle && <p style={{fontSize:"32px",marginTop:"20px"}}>Counter {counter}  </p> }
+    {counterToggle  && <p style={{fontSize:"32px",marginTop:"20px"}}>Counter {counter} </p>}
     <Button onClick={incrementHandler}>+</Button>
     <Button onClick={increaseBy5}>+5</Button>
     <Button onClick={decrementHandler}>-</Button>
@@ -60,6 +66,7 @@ return (
   </StyledBlock>
 
     </StyledDiv>
+    </>
 )
 
 
